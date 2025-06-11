@@ -11,7 +11,7 @@
                                     <a href="index.html" class="logo logo-admin">
                                         <img src="<?= base_url('approx-v1.0/dist/assets/images/griyabakpia.png') ?>" height="50" alt="logo" class="auth-logo">
                                     </a>
-                                    <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">ffaaaaa</h4>
+                                    <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">Griya Bakpiya</h4>
                                     <p class="text-muted fw-medium mb-0">Login untuk melanjutkan.</p>
                                 </div>
                             </div>
