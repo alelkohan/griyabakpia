@@ -8,6 +8,10 @@ class keuangan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Keuangan_model');
+
+        if (!$this->session->userdata('admin')) {
+            redirect('auth');
+        }
     }
 
     public function index()

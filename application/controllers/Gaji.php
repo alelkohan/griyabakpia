@@ -10,6 +10,10 @@ class Gaji extends CI_Controller
         $this->load->model('Gaji_model');
         $this->load->model('Karyawan_model');
         $this->load->model('Keuangan_model');
+
+        if (!$this->session->userdata('admin')) {
+            redirect('auth');
+        }
     }
 
     public function index()

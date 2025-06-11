@@ -8,6 +8,10 @@ class Produk extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Produk_model');
+
+        if (!$this->session->userdata('admin')) {
+            redirect('auth');
+        }
     }
 
     public function index()

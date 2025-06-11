@@ -38,6 +38,9 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('admin',$karyawan);
                 redirect('admin');
             }
+        } else {
+            $this->session->set_flashdata('error','Tidak ditemukan data karyawan');
+            redirect('auth');
         }
     }    
 }

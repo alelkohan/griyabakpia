@@ -8,6 +8,10 @@ class Karyawan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Karyawan_model');
+
+        if (!$this->session->userdata('admin')) {
+            redirect('auth');
+        }
     }
 
     public function index()
