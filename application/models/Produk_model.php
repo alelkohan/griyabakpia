@@ -179,7 +179,7 @@ class Produk_model extends CI_Model
         $this->db->from('produk');
         $this->db->join('pemilik', 'produk.id_pemilik = pemilik.id_pemilik', 'left');
         $this->db->order_by('produk.id_produk', 'desc');
-        $this->db->where("p.id_produk NOT IN (
+        $this->db->where("produk.id_produk NOT IN (
             SELECT id_produk FROM produk_outlet WHERE id_outlet = ".$this->db->escape($id_outlet)."
         )");
         return $this->db->get()->result();
