@@ -10,6 +10,20 @@ class Gaji extends CI_Controller
         $this->load->model('Gaji_model');
         $this->load->model('Karyawan_model');
         $this->load->model('Keuangan_model');
+
+        if ($this->session->userdata('user')) {
+
+            $user = $this->session->userdata('user');
+            $allowed_roles = ['admin', 'manager'];
+
+            if (!in_array($user->peran_karyawan, $allowed_roles)) {
+                echo "Anda tidak punya akses ke halaman ini.";
+                die();
+            }
+
+        } else {
+            redirect('auth');
+        }
     }
 
     public function index()

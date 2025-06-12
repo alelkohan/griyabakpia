@@ -25,62 +25,66 @@
             <button class="btn btn-primary btn-sm mb-2 btn-pemilik">Data Pemilik</button>
             <button class="btn btn-primary btn-sm mb-2 btn-produk">Data Produk</button>
             <button class="btn btn-primary btn-sm mb-2 btn-outlet">Data Outlet</button>
-            
+
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="row align-items-center">
-                                <div class="col">                      
+                                <div class="col">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <?php $i = 0; foreach ($outlets as $outlet): ?>
-                                            <a class="nav-link py-2 <?= $i == 0 ? 'active' : '' ?>"
-                                                id="tab<?= $i ?>-tab"
-                                                data-bs-toggle="tab"
-                                                href="#tab<?= $i ?>"
-                                                aria-selected="<?= $i == 0 ? 'true' : 'false' ?>"
-                                                role="tab">
-                                                <?= $outlet->nama_outlet ?>
-                                            </a>
-                                            <?php $i++; endforeach; ?>
+                                            <?php $i = 0;
+                                            foreach ($outlets as $outlet): ?>
+                                                <a class="nav-link py-2 <?= $i == 0 ? 'active' : '' ?>"
+                                                    id="tab<?= $i ?>-tab"
+                                                    data-bs-toggle="tab"
+                                                    href="#tab<?= $i ?>"
+                                                    aria-selected="<?= $i == 0 ? 'true' : 'false' ?>"
+                                                    role="tab">
+                                                    <?= $outlet->nama_outlet ?>
+                                                </a>
+                                            <?php $i++;
+                                            endforeach; ?>
                                         </div>
                                     </nav>
                                 </div><!--end col-->
-                            </div>  <!--end row-->                                  
+                            </div> <!--end row-->
                         </div><!--end card-header-->
                         <div class="card-body pt-0">
                             <div class="tab-content" id="nav-tabContent">
-                                <?php $i = 0; foreach ($outlets as $outlet): ?>
-                                <div class="tab-pane <?= $i == 0 ? 'active' : '' ?>"
-                                    id="tab<?= $i ?>"
-                                    role="tabpanel"
-                                    aria-labelledby="tab<?= $i ?>-tab">
-                                    <div class="justify-content-between d-flex">
-                                        <h5 class="card-title">Data Produk <?= $outlet->nama_outlet ?></h5>
-                                        <button type="button" data-id_outlet="<?= $outlet->id_outlet ?>" class="btn btn-primary btn-sm btn-produkoutlet-add">Tambah Produk</button>
+                                <?php $i = 0;
+                                foreach ($outlets as $outlet): ?>
+                                    <div class="tab-pane <?= $i == 0 ? 'active' : '' ?>"
+                                        id="tab<?= $i ?>"
+                                        role="tabpanel"
+                                        aria-labelledby="tab<?= $i ?>-tab">
+                                        <div class="justify-content-between d-flex">
+                                            <h5 class="card-title">Data Produk <?= $outlet->nama_outlet ?></h5>
+                                            <button type="button" data-id_outlet="<?= $outlet->id_outlet ?>" class="btn btn-primary btn-sm btn-produkoutlet-add">Tambah Produk</button>
+                                        </div>
+                                        <div class="table-responsive mt-3">
+                                            <table class="table table-centered tabelProduk" id="tabelProduk<?= $i ?>" data-id="<?= $outlet->id_outlet ?>" style="width: 100%;">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Nomor</th>
+                                                        <th>Nama Produk</th>
+                                                        <th>Pemilik</th>
+                                                        <th>Harga</th>
+                                                        <th>Stok</th>
+                                                        <th class="text-end">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                        <!-- Konten outlet bisa ditambahkan di sini -->
                                     </div>
-                                    <div class="table-responsive mt-3">
-                                        <table class="table table-centered tabelProduk" id="tabelProduk<?= $i ?>" data-id="<?= $outlet->id_outlet ?>" style="width: 100%;">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>Nomor</th>
-                                                    <th>Nama Produk</th>
-                                                    <th>Pemilik</th>
-                                                    <th>Harga</th>
-                                                    <th>Stok</th>
-                                                    <th class="text-end">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>
-                                    </div>
-                                    <!-- Konten outlet bisa ditambahkan di sini -->
-                                </div>
-                                <?php $i++; endforeach; ?>
+                                <?php $i++;
+                                endforeach; ?>
                             </div>
-                        </div><!--end card-body--> 
-                    </div><!--end card--> 
+                        </div><!--end card-body-->
+                    </div><!--end card-->
                 </div>
 
             </div><!--end row-->
@@ -91,7 +95,7 @@
 
         <!--end footer-->
     </div>
-<!-- end page content -->
+    <!-- end page content -->
 </div>
 <!-- end page-wrapper -->
 
@@ -114,8 +118,8 @@
 <script>
     var tableProdukInstances = {};
 
-    $(document).ready(function () {
-        $('.tabelProduk').each(function () {
+    $(document).ready(function() {
+        $('.tabelProduk').each(function() {
             var tableId = $(this).attr('id');
             var id_outlet = $(this).data('id');
 
@@ -134,7 +138,10 @@
                 ordering: true,
                 pageLength: 10,
                 lengthMenu: [5, 8, 10, 25],
-                columnDefs: [{ targets: 5, className: 'text-end' }]
+                columnDefs: [{
+                    targets: 5,
+                    className: 'text-end'
+                }]
             });
         });
 
@@ -146,7 +153,9 @@
 
             frame.modal("show");
 
-            $.get("<?= site_url('produk/modal_add_produkoutlet'); ?>", { id_outlet: id_outlet }, function(res) {
+            $.get("<?= site_url('produk/modal_add_produkoutlet'); ?>", {
+                id_outlet: id_outlet
+            }, function(res) {
                 frame.find(".modal-body").html(res);
 
                 // Set nilai input hidden setelah form dimuat
@@ -154,8 +163,25 @@
             });
         });
 
+        $(document).on("click", ".btn-produk-addstok", function() {
+            let frame = $("#modal_frame");
+
+            // Mengambil id_tabungan dari atribut data-id tombol yang diklik
+            let id_produk_outlet = $(this).data("id");
+
+            frame.find(".modal-title").html("Edit Pemilik");
+
+            // Menampilkan modal
+            frame.modal("show");
+
+            // Mengambil data tabungan untuk diedit
+            $.get("<?= site_url('produk/modal_add_stok'); ?>/" + id_produk_outlet, function(res) {
+                frame.find(".modal-body").html(res);
+            });
+        });
+
         // Tambahkan event ketika tab dibuka
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
             // Ambil ID tabel di dalam tab yang aktif
             var targetTab = $(e.target).attr("href"); // misal: #tab-outlet-solo
             var table = $(targetTab).find('.tabelProduk'); // cari tabel di dalam tab itu
@@ -168,7 +194,7 @@
         });
 
         $(document).on("click", ".btn-delete-produk-outlet", function() {
-            var id_produk = $(this).data("id");            
+            var id_produk = $(this).data("id");
             var url = "<?= base_url('produk/delete_produkoutlet'); ?>";
 
             bootbox.confirm({
@@ -185,9 +211,11 @@
                     }
                 },
                 callback: function(result) {
-                    if(result) {
-                        $.post(url, {id_produk: id_produk}, function(res) {
-                            if(res.status == "sukses") {
+                    if (result) {
+                        $.post(url, {
+                            id_produk: id_produk
+                        }, function(res) {
+                            if (res.status == "sukses") {
                                 toastr.success(res.pesan);
                                 $(".tabelProduk").DataTable().ajax.reload(null, false);
                             } else {
@@ -241,7 +269,6 @@
             });
         });
     });
-
 </script>
 </body>
 <!--end body-->

@@ -27,6 +27,10 @@
                                         <input type="password" class="form-control" name="password" id="userpassword" placeholder="Masukkan password">
                                     </div><!--end form-group-->
 
+                                    <?php if ($this->session->flashdata('error')): ?>
+                                        <p class="text-danger"><em><?= $this->session->flashdata('error') ?></em></p>
+                                    <?php endif ?>
+
                                     <div class="form-group mb-0 row">
                                         <div class="col-12">
                                             <div class="d-grid mt-3">

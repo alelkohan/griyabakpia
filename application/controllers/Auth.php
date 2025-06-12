@@ -30,14 +30,33 @@ class Auth extends CI_Controller
 
             //KARYAWAN
             if ($karyawan->peran_karyawan === 'kasir') {
-                $this->session->set_userdata('kasir',$karyawan);
+                $this->session->set_userdata('user',$karyawan);
                 redirect('kasir');
 
             //ADMIN
             } elseif ($karyawan->peran_karyawan === 'admin') {
-                $this->session->set_userdata('admin',$karyawan);
+                $this->session->set_userdata('user',$karyawan);
                 redirect('admin');
+
+            //MANAGER
+            } elseif ($karyawan->peran_karyawan === 'manager') {
+                $this->session->set_userdata('user',$karyawan);
+                redirect('admin');
+
+            //PRODUKSI
+            } else {
+                echo "anda belum punya akses ke sistem, Coming Soon...";
             }
+
+        } else {
+            $this->session->set_flashdata('error','Tidak ditemukan data karyawan');
+            redirect('auth');
         }
-    }    
+    } 
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('auth');
+    }   
 }
