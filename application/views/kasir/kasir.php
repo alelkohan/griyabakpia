@@ -1,149 +1,156 @@
 <?php $this->load->view('templates/kasir/head') ?>
 <?php $this->load->view('templates/kasir/header') ?>
+<div class="page-wrapper">
 
-<div class="container mt-3">
-    <form action="<?= site_url('kasir/simpan_transaksi') ?>" method="POST">
+    <!-- Page Content-->
+    <div class="page-content">
         <div class="container-fluid">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" id="keranjang-tab" data-bs-toggle="tab" data-bs-target="#keranjang-tab-pane" type="button">Keranjang</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" id="transaksi-tab" data-bs-toggle="tab" data-bs-target="#transaksi-tab-pane" type="button">Transaksi</button>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
+            <div class="mt-3">
+                <form action="<?= site_url('kasir/simpan_transaksi') ?>" method="POST">
+                    <div class="container-fluid">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active" id="keranjang-tab" data-bs-toggle="tab" data-bs-target="#keranjang-tab-pane" type="button">Keranjang</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" id="transaksi-tab" data-bs-toggle="tab" data-bs-target="#transaksi-tab-pane" type="button">Transaksi</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3" id="myTabContent">
 
-                <!-- KERANJANG -->
-                <div class="tab-pane fade show active" id="keranjang-tab-pane" role="tabpanel">
-                    <div class="d-flex justify-content-between mt-3">
-                        <h4>Pilih Produk</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="mb-3">
-                                <input type="search" id="search-produk" name="search" class="form-control" placeholder="Search here...">
-                            </div>
-                            <div id="produk-search"></div>
-                            <div class="row" id="produk-list">
-                                <?php foreach ($produk as $key): ?>
-                                    <div class="col-lg-3 col-md-4 col-6">
-                                        <div class="card pilih-produk" 
-                                        data-id="<?= $key->id_produk ?>"
-                                        data-nama="<?= $key->nama_produk ?>"
-                                        data-harga="<?= $key->harga_outlet ?>"
-                                        data-harga-default="<?= $key->harga_default ?>"
-                                        data-stok="<?= $key->stok ?>"
-                                        data-jenis-pemilik="<?= $key->jenis_pemilik ?>"
-                                        data-id-pemilik="<?= $key->id_pemilik ?>">
+                            <!-- KERANJANG -->
+                            <div class="tab-pane fade show active" id="keranjang-tab-pane" role="tabpanel">
+                                <div class="d-flex justify-content-between mt-3">
+                                    <h4>Pilih Produk</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="mb-3">
+                                            <input type="search" id="search-produk" name="search" class="form-control" placeholder="Search here...">
+                                        </div>
+                                        <div id="produk-search"></div>
+                                        <div class="row" id="produk-list">
+                                            <?php foreach ($produk as $key): ?>
+                                                <div class="col-lg-3 col-md-4 col-6">
+                                                    <div class="card pilih-produk" 
+                                                    data-id="<?= $key->id_produk ?>"
+                                                    data-nama="<?= $key->nama_produk ?>"
+                                                    data-harga="<?= $key->harga_outlet ?>"
+                                                    data-harga-default="<?= $key->harga_default ?>"
+                                                    data-stok="<?= $key->stok ?>"
+                                                    data-jenis-pemilik="<?= $key->jenis_pemilik ?>"
+                                                    data-id-pemilik="<?= $key->id_pemilik ?>">
+                                                    <div class="card-body">
+                                                        <h5><?= $key->nama_produk ?></h5>
+                                                        <p>Rp <?= number_format($key->harga_outlet, 0, ',', '.') ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h5><?= $key->nama_produk ?></h5>
-                                            <p>Rp <?= number_format($key->harga_outlet, 0, ',', '.') ?></p>
+                                            <h3>Keranjang</h3>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 50%;">Produk</th>
+                                                            <th style="width: 50%;">Qty</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="keranjang-body">
+                                                        <tr>
+                                                            <td colspan="2"><em>Belum ada produk dipilih</em></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="bg-primary-subtle rounded p-3">
+                                                <h3>Total: Rp <span id="total-harga">0</span></h3>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-soft-danger btn-reset me-2">Reset</button>
+                                                    <button type="button" class="btn btn-primary" id="btn-lanjut-transaksi">Lanjut Transaksi</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3>Keranjang</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 50%;">Produk</th>
-                                                <th style="width: 50%;">Qty</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="keranjang-body">
-                                            <tr>
-                                                <td colspan="2"><em>Belum ada produk dipilih</em></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+                        <!-- TRANSAKSI -->
+                        <div class="tab-pane fade" id="transaksi-tab-pane" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card w-100">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 50%;">Produk</th>
+                                                            <th style="width: 50%;">Qty</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="detailKeranjang">
+                                                        <tr>
+                                                            <td colspan="2"><em>Belum ada produk dipilih</em></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bg-primary-subtle rounded p-3">
-                                    <h3>Total: Rp <span id="total-harga">0</span></h3>
+                                <div class="col-lg-8">
+                                    <div class="bg-primary-subtle rounded p-3 d-flex justify-content-between mb-3">
+                                        <h2>Total:</h2>
+                                        <h2>Rp <span id="total-diskon">0</span></h2>
+                                        <input type="hidden" name="total_diskon" value="">
+                                        <input type="hidden" name="total" value="">
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <label>Bayar</label>
+                                            <input class="form-control mb-3 input-rupiah" type="text" min="0" name="bayar">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Kembalian</label>
+                                            <input class="form-control mb-3 input-rupiah" type="text" name="kembalian" readonly>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Diskon (Rp)</label>
+                                            <input class="form-control mb-3 input-rupiah" type="text" name="diskon" min="0" value="0">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Metode Bayar</label>
+                                            <select class="form-select" name="metode_bayar">
+                                                <option value="cash">Cash</option>
+                                                <option value="cashless">Cashless</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label>Catatan</label>
+                                            <textarea class="form-control" name="catatan"></textarea>
+                                        </div>
+                                    </div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-soft-danger btn-reset me-2">Reset</button>
-                                        <button type="button" class="btn btn-primary" id="btn-lanjut-transaksi">Lanjut Transaksi</button>
+                                        <button class="btn btn-soft-danger me-2" id="btn-kembali" type="button">Kembali</button>
+                                        <button class="btn btn-primary">Simpan & Cetak Struk</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
+            </form>
             </div>
-
-            <!-- TRANSAKSI -->
-            <div class="tab-pane fade" id="transaksi-tab-pane" role="tabpanel">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 50%;">Produk</th>
-                                                <th style="width: 50%;">Qty</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="detailKeranjang">
-                                            <tr>
-                                                <td colspan="2"><em>Belum ada produk dipilih</em></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="bg-primary-subtle rounded p-3 d-flex justify-content-between mb-3">
-                            <h2>Total:</h2>
-                            <h2>Rp <span id="total-diskon">0</span></h2>
-                            <input type="hidden" name="total_diskon" value="">
-                            <input type="hidden" name="total" value="">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-lg-6">
-                                <label>Bayar</label>
-                                <input class="form-control mb-3 input-rupiah" type="text" min="0" name="bayar">
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Kembalian</label>
-                                <input class="form-control mb-3 input-rupiah" type="text" name="kembalian" readonly>
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Diskon (Rp)</label>
-                                <input class="form-control mb-3 input-rupiah" type="text" name="diskon" min="0" value="0">
-                            </div>
-                            <div class="col-lg-6">
-                                <label>Metode Bayar</label>
-                                <select class="form-select" name="metode_bayar">
-                                    <option value="cash">Cash</option>
-                                    <option value="cashless">Cashless</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-12">
-                                <label>Catatan</label>
-                                <textarea class="form-control" name="catatan"></textarea>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-soft-danger me-2" id="btn-kembali" type="button">Kembali</button>
-                            <button class="btn btn-primary">Simpan & Cetak Struk</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</form>
 </div>
 <?php $this->load->view('templates/kasir/foot') ?>
 <script>

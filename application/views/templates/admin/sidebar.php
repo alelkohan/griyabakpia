@@ -4,7 +4,7 @@
     <div class="brand">
         <a href="<?= site_url('dashboard') ?>" class="logo">
             <span>
-                <img src="<?= base_url('approx-v1.0/dist/') ?>assets/images/griyabakipa.png" alt="logo-small" class="logo-sm">
+                <img src="<?= base_url('approx-v1.0/dist/') ?>assets/images/kotak.png" alt="logo-small" class="logo-sm">
             </span>
             <span class="">
                 <img src="<?= base_url('approx-v1.0/dist/') ?>assets/images/griyabakipa.png" alt="logo-large" class="logo-lg logo-light">
@@ -20,7 +20,7 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-auto w-100">
                     <li class="menu-label mt-2">
-                        <span>Main</span>
+                        <span>Admin</span>
                     </li>
 
                     <li class="nav-item">

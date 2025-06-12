@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
+<html lang="en" dir="ltr" data-startbar="dark" data-bs-theme="dark">
 
 <head>
 
 
     <meta charset="utf-8" />
-    <title>GriyaBakpia | Admin</title>
+    <title>GriyaBakpia | Kasir</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />

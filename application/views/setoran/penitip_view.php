@@ -1,34 +1,41 @@
 <?php $this->load->view('templates/kasir/head') ?>
 <?php $this->load->view('templates/kasir/header') ?>
-<div class="container mt-3">
-	<div class="table-responsive">
-		<table class="table" id="penitip_table">
-			<thead class="table-light">
-				<tr>
-					<th>No</th>
-					<th>Penitip</th>
-					<th>Setoran produk & Pembayaran</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-	</div>
-</div>
-<div class="modal fade" tabindex="-1" id="modal_frame">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</button>
-		</div>
-		<div class="modal-body">
-			<p>Modal body text goes here.</p>
-		</div>
-		<div class="modal-footer">
-		</div>
-	</div>
-</div>
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="mt-3">
+				<div class="table-responsive">
+					<table class="table" id="penitip_table">
+						<thead class="table-light">
+							<tr>
+								<th>No</th>
+								<th>Penitip</th>
+								<th>Setoran produk & Pembayaran</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal fade" tabindex="-1" id="modal_frame">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Modal title</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Modal body text goes here.</p>
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
 </div>
 <?php $this->load->view('templates/kasir/foot') ?>
 
