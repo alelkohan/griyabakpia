@@ -9,7 +9,7 @@
                             <div class="card-body p-0 bg-black auth-header-box rounded-top">
                                 <div class="text-center p-3">
                                     <a href="index.html" class="logo logo-admin">
-                                        <img src="<?= base_url('approx-v1.0/dist/assets/images/griyabakpia.png') ?>" height="50" alt="logo" class="auth-logo">
+                                        <img src="<?= base_url('approx-v1.0/dist/assets/images/griyabakipa.png') ?>" height="50" alt="logo" class="auth-logo">
                                     </a>
                                     <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">Griya Bakpiya</h4>
                                     <p class="text-muted fw-medium mb-0">Login untuk melanjutkan.</p>
