@@ -12,15 +12,25 @@
                     <a class="nav-link" href="<?= site_url('kasir') ?>">Kasir</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= site_url('kasir/setoran') ?>">Setor</a>
+                    <a class="nav-link" href="<?= site_url('kasir/setoran') ?>">Setoran</a>
                 </li>
                 <li class="topbar-item">
             </ul>
+            <?php if ($this->session->userdata('user')->peran_karyawan === 'admin' || $this->session->userdata('user')->peran_karyawan === 'manager'): ?>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="<?= site_url('admin') ?>">Admin</a>
                 </li>
-                <li class="dropdown topbar-item">
+            </ul>
+            <?php endif ?>
+            <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
+                <li class="topbar-item">
+                    <a class="nav-link nav-icon" href="javascript:void(0);" id="light-dark-mode">
+                        <i class="iconoir-half-moon dark-mode"></i>
+                        <i class="iconoir-sun-light light-mode"></i>
+                    </a>
+                </li>
+                <li class="topbar-item dropdown topbar-item">
                     <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
                         aria-haspopup="false" aria-expanded="false" data-bs-offset="0,19">
                         <img src="<?= base_url('upload/karyawan/').$this->session->userdata('user')->foto_karyawan ?>" alt="" class="thumb-md rounded-circle">
