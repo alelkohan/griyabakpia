@@ -29,6 +29,13 @@
                             <span>Dashboard</span>
                         </a>
                     </li><!--end nav-item-->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('kasir') ?>">
+                            <i class="fa fa-money-bill menu-icon"></i>
+                            <span>Kasir</span>
+                        </a>
+                    </li><!--end nav-item-->
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarTransactions" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTransactions">

@@ -7,7 +7,17 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
 
-        if (!$this->session->userdata('admin')) {
+        if ($this->session->userdata('user')) {
+
+            $user = $this->session->userdata('user');
+            $allowed_roles = ['admin', 'manager'];
+
+            if (!in_array($user->peran_karyawan, $allowed_roles)) {
+                echo "Anda tidak punya akses ke halaman ini.";
+                die();
+            }
+
+        } else {
             redirect('auth');
         }
     }

@@ -9,7 +9,17 @@ class Kasir extends CI_Controller
         $this->load->model('kasir_model');
         $this->load->model('keuangan_model');
 
-        if (!$this->session->userdata('kasir')) {
+        if ($this->session->userdata('user')) {
+
+            $user = $this->session->userdata('user');
+            $allowed_roles = ['kasir', 'admin', 'manager'];
+
+            if (!in_array($user->peran_karyawan, $allowed_roles)) {
+                echo "Anda tidak punya akses ke halaman ini.";
+                die();
+            }
+
+        } else {
             redirect('auth');
         }
     }
@@ -29,7 +39,7 @@ class Kasir extends CI_Controller
 
     public function index()
     {
-        $kasir = $this->session->userdata('kasir');
+        $kasir = $this->session->userdata('user');
         $data['produk'] = $this->kasir_model->get_produk_by_outlet($kasir->id_outlet);
         // echo "<pre>";
         // var_dump($data['produk']);
@@ -41,7 +51,7 @@ class Kasir extends CI_Controller
     public function cari_produk()
     {
         $keyword = $this->input->get('keyword');
-        $kasir   = $this->session->userdata('kasir');
+        $kasir   = $this->session->userdata('user');
         $produk  = $this->kasir_model->search_produk_by_nama_produk($keyword, $kasir->id_outlet); // buat query sesuai model kamu
 
         echo `<div class="row">`;
@@ -79,7 +89,7 @@ class Kasir extends CI_Controller
 
         // Data kasir & outlet
         $id_transaksi   = 'TR' . date('ymdhis');
-        $kasir          = $this->session->userdata('kasir');
+        $kasir          = $this->session->userdata('user');
         $outlet         = $this->kasir_model->get_outlet_by_id_outlet($kasir->id_outlet);
 
         // Simpan transaksi utama
@@ -212,14 +222,14 @@ class Kasir extends CI_Controller
 
     public function produk_penitip($id_pemilik)
     {
-        $kasir = $this->session->userdata('kasir');
+        $kasir = $this->session->userdata('user');
         $data['produk'] = $this->kasir_model->get_produk_penitip($id_pemilik, $kasir->id_outlet);
         $this->load->view('setoran/produk_penitip',$data);
     }
 
     public function setoran_penitip($id_pemilik)
     {
-        $kasir = $this->session->userdata('kasir');
+        $kasir = $this->session->userdata('user');
         $data['id_pemilik'] = $id_pemilik;
         $data['id_outlet'] = $kasir->id_outlet;
         $data['produk_penitip'] = $this->kasir_model->get_produk_penitip($id_pemilik, $data['id_outlet']);
@@ -381,7 +391,7 @@ class Kasir extends CI_Controller
 
     public function simpan_pembayaran_penitip()
     {
-        $kasir = $this->session->userdata('kasir');
+        $kasir = $this->session->userdata('user');
         $outlet = $this->kasir_model->get_outlet_by_id_outlet($kasir->id_outlet);
 
         $id_titipan_toko = $this->input->post('id_titipan_toko');
