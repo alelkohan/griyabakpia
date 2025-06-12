@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Waktu pembuatan: 11 Jun 2025 pada 11.55
--- Versi server: 10.4.27-MariaDB
+-- Host: localhost:3306
+-- Waktu pembuatan: 12 Jun 2025 pada 09.16
+-- Versi server: 5.7.24
 -- Versi PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,108 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `absensi_karyawan`
---
-
-CREATE TABLE `absensi_karyawan` (
-  `id_absensi` int(11) NOT NULL,
-  `id_karyawan` int(11) NOT NULL,
-  `waktu_masuk` datetime DEFAULT NULL,
-  `waktu_pulang` datetime DEFAULT NULL,
-  `lembur` int(11) DEFAULT NULL,
-  `status` enum('hadir','izin','sakit','alpha') NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `absensi_karyawan`
---
-
-INSERT INTO `absensi_karyawan` (`id_absensi`, `id_karyawan`, `waktu_masuk`, `waktu_pulang`, `lembur`, `status`, `created_at`) VALUES
-(22, 9, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(23, 10, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(24, 11, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(25, 12, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(26, 13, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(27, 14, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(28, 15, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(29, 16, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(30, 17, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(31, 18, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(32, 19, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(33, 20, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(34, 21, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(35, 22, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(36, 23, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(37, 24, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(38, 25, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(39, 26, '2025-06-05 10:26:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(40, 8, '2025-06-05 00:00:00', NULL, NULL, 'alpha', '2025-06-05'),
-(41, 27, '2025-06-05 12:04:00', '2025-06-05 12:04:00', NULL, 'hadir', '2025-06-05'),
-(42, 8, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(43, 9, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(44, 10, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(45, 11, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(46, 12, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(47, 13, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(48, 14, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(49, 15, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(50, 16, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(51, 17, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(52, 18, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(53, 19, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(54, 20, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(55, 21, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(56, 22, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(57, 23, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(58, 24, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(59, 25, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(60, 26, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(61, 27, '2025-06-09 10:40:00', NULL, NULL, 'hadir', '2025-06-09'),
-(62, 8, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(63, 9, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(64, 10, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(65, 11, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(66, 12, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(67, 13, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(68, 14, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(69, 15, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(70, 16, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(71, 17, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(72, 18, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(73, 19, '2025-06-10 00:00:00', NULL, NULL, 'alpha', '2025-06-10'),
-(74, 20, '2025-06-10 00:00:00', NULL, NULL, 'sakit', '2025-06-10'),
-(76, 22, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(77, 23, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(78, 24, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(79, 25, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(80, 26, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(81, 27, '2025-06-10 09:44:00', '2025-06-10 09:54:00', 5, 'hadir', '2025-06-10'),
-(82, 21, '2025-06-10 09:55:00', '2025-06-10 09:55:00', NULL, 'hadir', '2025-06-10'),
-(83, 8, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(84, 9, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(85, 10, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(86, 11, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(87, 12, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(88, 13, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(89, 14, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(90, 15, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(91, 16, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(92, 17, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(93, 18, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(94, 19, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(95, 20, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(96, 21, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(97, 22, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(98, 23, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(99, 24, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(100, 25, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(101, 26, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11'),
-(102, 27, '2025-06-11 07:55:00', NULL, 2, 'hadir', '2025-06-11');
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `bahan`
 --
 
@@ -134,7 +32,7 @@ CREATE TABLE `bahan` (
   `nama_bahan` varchar(50) NOT NULL,
   `satuan` varchar(20) NOT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `bahan`
@@ -158,7 +56,7 @@ CREATE TABLE `detail_pembayaran_toko` (
   `id_produk` int(11) NOT NULL,
   `jumlah_terjual` int(11) NOT NULL,
   `jumlah_return` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `detail_pembayaran_toko`
@@ -178,7 +76,7 @@ CREATE TABLE `detail_setor_toko` (
   `id_log_setor_toko` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
   `jumlah_produk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `detail_setor_toko`
@@ -202,7 +100,7 @@ CREATE TABLE `detail_transaksi_kasir` (
   `harga_satuan` int(11) NOT NULL,
   `qty` int(5) NOT NULL,
   `subtotal` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `detail_transaksi_kasir`
@@ -238,14 +136,14 @@ CREATE TABLE `karyawan` (
   `status_tempat_tinggal` enum('Menetap','Tidak Menetap') NOT NULL,
   `status_karyawan` enum('Aktif','Nonaktif') NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `karyawan`
 --
 
 INSERT INTO `karyawan` (`id_karyawan`, `id_outlet`, `nama_karyawan`, `alamat_karyawan`, `nomor_telepon`, `kelamin_karyawan`, `peran_karyawan`, `tanggal_masuk`, `foto_karyawan`, `status_tempat_tinggal`, `status_karyawan`, `password`) VALUES
-(8, 2, 'a', 'Magenlang, Jawa Tengah', '0812-2959-0343', 'laki-laki', 'kasir', '2025-05-24', '1748062536__.jpeg', 'Menetap', 'Aktif', '$2y$10$hRi1qju2KOeEPcBZ0wYfhu/PN5e9Wl.ddWeDTds8Uokad764X9D1a'),
+(8, 1, 'a', 'Magenlang, Jawa Tengah', '0812-2959-0343', 'laki-laki', 'admin', '2025-05-24', '1748062536__.jpeg', 'Menetap', 'Aktif', '$2y$10$hRi1qju2KOeEPcBZ0wYfhu/PN5e9Wl.ddWeDTds8Uokad764X9D1a'),
 (9, 0, 'Farrel Hafizh Setyawan', 'Bantul, DIY', '0812-2540-3033', 'laki-laki', 'produksi', '2025-05-27', '1748314354_Photo_on_25-08-24_at_07_49.jpg', 'Menetap', 'Nonaktif', '$2y$10$IM5Vbldk2AjkfTUpNfplTu2iuJ0gJvUKPFfwrBSCcJMbWTG0FVSxW'),
 (10, 0, 'Nasrul Amin', 'Bantul, DIY', '0812-2959-0020', 'laki-laki', 'produksi', '2025-05-31', '1748664082_DSC04352.JPG', 'Menetap', 'Aktif', '$2y$10$UDTrb9agZFk2cer/NC/2VOzgeNteWA8FCdhpqXNcQsgpyTcTp7WR.'),
 (11, 0, 'Ramadhani', 'Bantul, DIY', '0812-0102-1021', 'laki-laki', 'kasir', '2025-05-31', '1748924786_DSC04991.JPG', 'Menetap', 'Aktif', '$2y$10$iHr5NJp9jK/Tnjbhc8vlYOU9qnbVzKfu2dqecN.jyodeO5vVbDo6O'),
@@ -279,8 +177,8 @@ CREATE TABLE `keuangan` (
   `saldo` int(255) NOT NULL,
   `nilai_mutasi` int(30) NOT NULL,
   `asal` varchar(255) NOT NULL,
-  `keterangan` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `keterangan` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `keuangan`
@@ -307,8 +205,8 @@ CREATE TABLE `log_bahan` (
   `harga_total` int(11) DEFAULT NULL,
   `updated_by` varchar(20) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `keterangan` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `keterangan` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -321,7 +219,7 @@ CREATE TABLE `log_setor_toko` (
   `id_toko` int(11) NOT NULL,
   `tanggal_setor` datetime NOT NULL,
   `status_bayar` enum('belum','lunas') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `log_setor_toko`
@@ -340,17 +238,18 @@ INSERT INTO `log_setor_toko` (`id_log_setor_toko`, `id_toko`, `tanggal_setor`, `
 CREATE TABLE `log_stok_outlet` (
   `id_log_stok_outlet` int(11) NOT NULL,
   `id_produk_outlet` int(11) DEFAULT NULL,
-  `tanggal` datetime DEFAULT current_timestamp(),
+  `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
   `jumlah` int(11) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `log_stok_outlet`
 --
 
 INSERT INTO `log_stok_outlet` (`id_log_stok_outlet`, `id_produk_outlet`, `tanggal`, `jumlah`, `keterangan`) VALUES
-(3, 10, '2025-06-02 03:19:38', 50, ' ghnumjo');
+(3, 10, '2025-06-02 03:19:38', 50, ' ghnumjo'),
+(0, 16, '2025-06-12 09:01:01', 10, 'buat baru');
 
 -- --------------------------------------------------------
 
@@ -362,12 +261,12 @@ CREATE TABLE `log_stok_toko` (
   `id_log_stok_toko` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
   `id_toko` int(11) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `jenis_perubahan` enum('setor','terjual','return') NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `keterangan` text DEFAULT NULL,
+  `keterangan` text,
   `sisa_stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `log_stok_toko`
@@ -391,7 +290,7 @@ CREATE TABLE `outlet` (
   `id_outlet` int(11) NOT NULL,
   `nama_outlet` varchar(50) NOT NULL,
   `jenis_outlet` enum('Sendiri','Luar') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `outlet`
@@ -412,8 +311,8 @@ CREATE TABLE `pembayaran_toko` (
   `id_log_setor_toko` int(11) NOT NULL,
   `tanggal_bayar` datetime NOT NULL,
   `jumlah_uang` int(11) NOT NULL,
-  `keterangan` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `keterangan` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pembayaran_toko`
@@ -432,7 +331,7 @@ CREATE TABLE `pemilik` (
   `id_pemilik` int(11) NOT NULL,
   `nama_pemilik` varchar(50) NOT NULL,
   `jenis_pemilik` enum('sendiri','penitip') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pemilik`
@@ -455,7 +354,7 @@ CREATE TABLE `produk` (
   `id_pemilik` int(11) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
   `harga_default` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `produk`
@@ -493,7 +392,7 @@ CREATE TABLE `produk_outlet` (
   `id_outlet` int(11) DEFAULT NULL,
   `harga_outlet` int(11) DEFAULT NULL,
   `stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `produk_outlet`
@@ -501,7 +400,7 @@ CREATE TABLE `produk_outlet` (
 
 INSERT INTO `produk_outlet` (`id_produk_outlet`, `id_produk`, `id_outlet`, `harga_outlet`, `stok`) VALUES
 (15, 52, 2, 42000, 0),
-(16, 51, 2, 42000, 0),
+(16, 51, 2, 42000, 10),
 (17, 60, 2, 42000, 0),
 (18, 59, 2, 42000, 0);
 
@@ -518,7 +417,7 @@ CREATE TABLE `produk_toko` (
   `harga_toko` int(11) NOT NULL,
   `stok` int(11) NOT NULL,
   `jumlah_terjual` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `produk_toko`
@@ -535,11 +434,11 @@ INSERT INTO `produk_toko` (`id_produk_toko`, `id_produk`, `id_toko`, `harga_toko
 
 CREATE TABLE `titipan_toko` (
   `id_titipan_toko` int(11) NOT NULL,
-  `waktu` datetime NOT NULL DEFAULT current_timestamp(),
+  `waktu` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lunas` enum('true','false') NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `id_pemilik` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `titipan_toko`
@@ -559,7 +458,7 @@ CREATE TABLE `toko` (
   `id_toko` int(11) NOT NULL,
   `nama_toko` varchar(250) NOT NULL,
   `status` enum('aktif','nonaktif') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `toko`
@@ -582,7 +481,7 @@ CREATE TABLE `transaksi_gaji` (
   `tanggal_pembayaran` date NOT NULL,
   `jumlah_gaji` int(50) NOT NULL,
   `keterangan` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -602,7 +501,7 @@ CREATE TABLE `transaksi_kasir` (
   `catatan` text NOT NULL,
   `id_outlet` int(11) NOT NULL,
   `metode_bayar` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transaksi_kasir`
@@ -616,12 +515,6 @@ INSERT INTO `transaksi_kasir` (`id_transaksi_kasir`, `id_kasir`, `total_harga`, 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indeks untuk tabel `absensi_karyawan`
---
-ALTER TABLE `absensi_karyawan`
-  ADD PRIMARY KEY (`id_absensi`);
 
 --
 -- Indeks untuk tabel `bahan`
@@ -642,224 +535,10 @@ ALTER TABLE `detail_setor_toko`
   ADD PRIMARY KEY (`id_detail_setor_toko`);
 
 --
--- Indeks untuk tabel `detail_transaksi_kasir`
---
-ALTER TABLE `detail_transaksi_kasir`
-  ADD PRIMARY KEY (`id_detail_transaksi`);
-
---
 -- Indeks untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_karyawan`);
-
---
--- Indeks untuk tabel `keuangan`
---
-ALTER TABLE `keuangan`
-  ADD PRIMARY KEY (`id_keuangan`);
-
---
--- Indeks untuk tabel `log_bahan`
---
-ALTER TABLE `log_bahan`
-  ADD PRIMARY KEY (`id_log_bahan`);
-
---
--- Indeks untuk tabel `log_setor_toko`
---
-ALTER TABLE `log_setor_toko`
-  ADD PRIMARY KEY (`id_log_setor_toko`);
-
---
--- Indeks untuk tabel `log_stok_outlet`
---
-ALTER TABLE `log_stok_outlet`
-  ADD PRIMARY KEY (`id_log_stok_outlet`);
-
---
--- Indeks untuk tabel `log_stok_toko`
---
-ALTER TABLE `log_stok_toko`
-  ADD PRIMARY KEY (`id_log_stok_toko`);
-
---
--- Indeks untuk tabel `outlet`
---
-ALTER TABLE `outlet`
-  ADD PRIMARY KEY (`id_outlet`);
-
---
--- Indeks untuk tabel `pembayaran_toko`
---
-ALTER TABLE `pembayaran_toko`
-  ADD PRIMARY KEY (`id_pembayaran_toko`);
-
---
--- Indeks untuk tabel `pemilik`
---
-ALTER TABLE `pemilik`
-  ADD PRIMARY KEY (`id_pemilik`);
-
---
--- Indeks untuk tabel `produk`
---
-ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_produk`);
-
---
--- Indeks untuk tabel `produk_outlet`
---
-ALTER TABLE `produk_outlet`
-  ADD PRIMARY KEY (`id_produk_outlet`);
-
---
--- Indeks untuk tabel `produk_toko`
---
-ALTER TABLE `produk_toko`
-  ADD PRIMARY KEY (`id_produk_toko`);
-
---
--- Indeks untuk tabel `titipan_toko`
---
-ALTER TABLE `titipan_toko`
-  ADD PRIMARY KEY (`id_titipan_toko`);
-
---
--- Indeks untuk tabel `toko`
---
-ALTER TABLE `toko`
-  ADD PRIMARY KEY (`id_toko`);
-
---
--- Indeks untuk tabel `transaksi_gaji`
---
-ALTER TABLE `transaksi_gaji`
-  ADD PRIMARY KEY (`id_transaksi_gaji`);
-
---
--- Indeks untuk tabel `transaksi_kasir`
---
-ALTER TABLE `transaksi_kasir`
-  ADD PRIMARY KEY (`id_transaksi_kasir`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `absensi_karyawan`
---
-ALTER TABLE `absensi_karyawan`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
-
---
--- AUTO_INCREMENT untuk tabel `bahan`
---
-ALTER TABLE `bahan`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT untuk tabel `detail_pembayaran_toko`
---
-ALTER TABLE `detail_pembayaran_toko`
-  MODIFY `id_detail_pembayaran_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT untuk tabel `detail_setor_toko`
---
-ALTER TABLE `detail_setor_toko`
-  MODIFY `id_detail_setor_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT untuk tabel `karyawan`
---
-ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT untuk tabel `keuangan`
---
-ALTER TABLE `keuangan`
-  MODIFY `id_keuangan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT untuk tabel `log_bahan`
---
-ALTER TABLE `log_bahan`
-  MODIFY `id_log_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT untuk tabel `log_setor_toko`
---
-ALTER TABLE `log_setor_toko`
-  MODIFY `id_log_setor_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT untuk tabel `log_stok_outlet`
---
-ALTER TABLE `log_stok_outlet`
-  MODIFY `id_log_stok_outlet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `log_stok_toko`
---
-ALTER TABLE `log_stok_toko`
-  MODIFY `id_log_stok_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT untuk tabel `outlet`
---
-ALTER TABLE `outlet`
-  MODIFY `id_outlet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `pembayaran_toko`
---
-ALTER TABLE `pembayaran_toko`
-  MODIFY `id_pembayaran_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `pemilik`
---
-ALTER TABLE `pemilik`
-  MODIFY `id_pemilik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT untuk tabel `produk`
---
-ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
-
---
--- AUTO_INCREMENT untuk tabel `produk_outlet`
---
-ALTER TABLE `produk_outlet`
-  MODIFY `id_produk_outlet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT untuk tabel `produk_toko`
---
-ALTER TABLE `produk_toko`
-  MODIFY `id_produk_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT untuk tabel `titipan_toko`
---
-ALTER TABLE `titipan_toko`
-  MODIFY `id_titipan_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT untuk tabel `toko`
---
-ALTER TABLE `toko`
-  MODIFY `id_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `transaksi_gaji`
---
-ALTER TABLE `transaksi_gaji`
-  MODIFY `id_transaksi_gaji` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
