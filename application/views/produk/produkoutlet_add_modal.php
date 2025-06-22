@@ -1,4 +1,4 @@
-<form class="" id="tambahProduk">
+<form class="" id="tambahProdukOutlet">
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
@@ -6,7 +6,7 @@
                 <label for="username" class="form-label">Produk</label>
                 <select name="id_produk" class="form-select" required="">
                     <option value="" disabled selected>Pilih Produk</option>
-                    <?php foreach   ($produk as $produk): ?>
+                    <?php foreach ($produk as $produk): ?>
                         <option value="<?= $produk->id_produk ?>"><?= $produk->nama_produk ?> (<?= $produk->nama_pemilik ?>/<?= $produk->jenis_pemilik ?>)</option>
                     <?php endforeach; ?>
                 </select>
@@ -26,7 +26,7 @@
     </div>
 </form>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         // Submit form via AJAX
         $(document).off('submit', '#tambahProduk').on('submit', '#tambahProduk', function(e) {
@@ -43,7 +43,7 @@
                 success: function(response) {
                     // Jika berhasil
                     toastr.success('Produk berhasil ditambahkan!', 'Sukses');
-                    
+
                     $('#modal_frame').modal('hide');
                     // Cari tab yang sedang aktif
                     var activeTab = $('.tab-pane.active');
@@ -61,19 +61,18 @@
                 }
             });
         });
+
+        document.getElementById('harga_produk2').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
+
     });
-
-    document.getElementById('harga_produk2').addEventListener('input', function(e) {
-        var value = e.target.value;
-
-        value = value.replace(/[^0-9]/g, '');
-
-        if (value) {
-            value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
-
-        e.target.value = value;
-    });
-
-</script>
-
+</script> -->

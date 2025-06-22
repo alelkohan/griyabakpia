@@ -16,7 +16,7 @@
     </div>
 </form>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         // Submit form via AJAX
         $(document).off('submit', '#editOutlet').on('submit', '#editOutlet', function(e) {
@@ -61,4 +61,4 @@
     });
 
 </script>
-
+ -->

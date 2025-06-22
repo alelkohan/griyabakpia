@@ -1,4 +1,4 @@
-<form class="" id="editProdukBantul">
+<form class="" id="editProduk">
     <input type="hidden" name="id_produk" id="id_produk" value="<?= $produk->id_produk ?>">
     <div class="row">
         <div class="col-md-6">
@@ -31,16 +31,16 @@
     </div>
     <div class="row">
         <div class="col-sm-12 text-end">
+            <button type="button" class="btn btn-secondary px-4 btn-tutup" data-target=".btn-produk">Kembali</button>
             <button type="submit" class="btn btn-primary px-4">Edit Produk</button>
         </div>
     </div>
 </form>
 
-<script type="text/javascript">
-
+<!-- <script type="text/javascript">
     $(document).ready(function() {
         // Submit form via AJAX
-        $('#editProdukBantul').on('submit', function(e) {
+        $('#editProduk').on('submit', function(e) {
             e.preventDefault(); // Prevent form from submitting normally
 
             // Serialize form data
@@ -59,8 +59,11 @@
                     toastr.success('Produk berhasil diubah!', 'Sukses');
 
                     $('#modal_frame').modal('hide');
-                    $('#tabelProdukBantul').DataTable().ajax.reload(); // Memperbarui DataTable
-                    $('#tabelProdukJogja').DataTable().ajax.reload(); // Memperbarui DataTable
+                    $('#tabelProduk').DataTable().ajax.reload(); // Memperbarui DataTable
+
+                    setTimeout(function() {
+                        $(".btn-produk").click(); // trigger buka ulang modal bahan
+                    }, 500);
                 },
                 error: function(xhr, status, error) {
                     // Jika terjadi error
@@ -68,18 +71,18 @@
                 }
             });
         });
+
+        document.getElementById('harga_produk4').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
+
     });
-
-    document.getElementById('harga_produk4').addEventListener('input', function(e) {
-        var value = e.target.value;
-
-        value = value.replace(/[^0-9]/g, '');
-
-        if (value) {
-            value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
-
-        e.target.value = value;
-    });
-
-</script>
+</script> -->

@@ -27,7 +27,7 @@
 	</div><!--end card-body-->
 </div><!--end card-->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	$(document).ready(function() {
 		var table_outlet = $("#tabelOutlet");
@@ -128,4 +128,4 @@
 
 	});
 
-</script>
+</script> -->

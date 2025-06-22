@@ -268,6 +268,583 @@
                 frame.find(".modal-body").html(res);
             });
         });
+
+        $(document).on('click', '.btn-tutup', function() {
+            let target = $(this).data('target'); // ambil tujuan dari data attribute
+
+            $('#modal_frame').modal('hide');
+
+            if (target) {
+                $('#modal_frame').one('hidden.bs.modal', function() {
+                    $(target).click(); // klik sesuai target tujuan
+                });
+            }
+        });
+
+        // batas
+
+        $(document).off('submit', '#tambahOutlet').on('submit', '#tambahOutlet', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '<?= site_url("produk/create_outlet") ?>',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    toastr.success('Outlet berhasil ditambahkan!', 'Sukses');
+                    $('#tabelOutlet').DataTable().ajax.reload();
+
+                    // Tutup modal dan reload konten kalau perlu
+                    $('#modal_frame').modal('hide');
+
+                    setTimeout(function() {
+                        $(".btn-outlet").click(); // Memanggil tombol outlet untuk buka modal data outlet
+                    }, 500); // Tunggu sebentar sebelum buka modal lagi
+
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Terjadi kesalahan saat menambahkan Outlet.', 'Error');
+                }
+            });
+        });
+
+        // batas
+
+        $(document).off('submit', '#editOutlet').on('submit', '#editOutlet', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '<?= site_url("produk/update_outlet") ?>',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    toastr.success('Outlet berhasil dieditkan!', 'Sukses');
+                    $('#tabelOutlet').DataTable().ajax.reload();
+
+                    // Tutup modal dan reload konten kalau perlu
+                    $('#modal_frame').modal('hide');
+
+                    setTimeout(function() {
+                        $(".btn-outlet").click(); // Memanggil tombol outlet untuk buka modal data outlet
+                    }, 500); // Tunggu sebentar sebelum buka modal lagi
+
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Terjadi kesalahan saat menambahkan Outlet.', 'Error');
+                }
+            });
+        });
+
+        // batas
+
+        var table_outlet = $("#tabelOutlet");
+
+        table_outlet.DataTable({
+            ajax: "<?= base_url('produk/get_all_outlet'); ?>",
+            paging: true,
+            info: true,
+            lengthChange: true,
+            searching: true,
+            ordering: false,
+        });
+
+        table_outlet.on('draw.dt', function() {
+            table_outlet.columns.adjust().draw();
+        });
+
+        $(document).on("click", ".btn-delete-outlet", function() {
+            var id_outlet = $(this).data("id");
+            var url = "<?= base_url('produk/delete_outlet'); ?>";
+
+            // Tutup dulu modal_frame
+            $('#modal_frame').modal('hide');
+
+            // Tunggu sampai modal bener-bener tertutup baru munculin konfirmasi
+            $('#modal_frame').off('hidden.bs.modal').on('hidden.bs.modal', function() {
+                // Matikan event ini setelah jalan sekali biar nggak dobel
+                $(this).off('hidden.bs.modal');
+
+                bootbox.confirm({
+                    title: "Konfirmasi Hapus outlet",
+                    message: "Apakah Anda yakin ingin menghapus outlet ini?",
+                    buttons: {
+                        confirm: {
+                            label: "Hapus",
+                            className: "btn-danger"
+                        },
+                        cancel: {
+                            label: "Batal",
+                            className: "btn-secondary"
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            $.post(url, {
+                                id_outlet: id_outlet
+                            }, function(res) {
+                                if (res.status == "sukses") {
+                                    toastr.success(res.pesan);
+                                    table_outlet.DataTable().ajax.reload();
+                                    $(".btn-outlet").click();
+                                } else {
+                                    toastr.warning(res.pesan);
+                                }
+                            });
+                        } else {
+                            $('#modal_frame').modal('show');
+                            $('#modal_frame .modal-title').html("Data outlet");
+
+                            $.get("<?= site_url('produk/modal_outlet'); ?>", function(res) {
+                                $('#modal_frame .modal-body').html(res);
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Konfigurasi tombol tambah produk
+        $(document).on("click", ".btn-outlet-add", function() {
+            let frame = $("#modal_frame");
+
+            frame.find(".modal-title").html("Tambah Outlet");
+
+            // Menampilkan modal
+            frame.modal("show");
+
+            // Mengambil data tabungan untuk diedit
+            $.get("<?= site_url('produk/modal_add_outlet'); ?>", function(res) {
+                frame.find(".modal-body").html(res);
+            });
+        });
+
+        $(document).on("click", ".btn-outlet-edit", function() {
+            let frame = $("#modal_frame");
+
+            // Mengambil id_tabungan dari atribut data-id tombol yang diklik
+            let id_outlet = $(this).data("id");
+
+            frame.find(".modal-title").html("Edit Outlet");
+
+            // Menampilkan modal
+            frame.modal("show");
+
+            // Mengambil data tabungan untuk diedit
+            $.get("<?= site_url('produk/modal_edit_outlet'); ?>/" + id_outlet, function(res) {
+                frame.find(".modal-body").html(res);
+            });
+        });
+
+        // batas
+
+        $(document).off('submit', '#tambahPemilik').on('submit', '#tambahPemilik', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '<?= site_url("produk/create_pemilik") ?>',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    toastr.success('Pemilik berhasil ditambahkan!', 'Sukses');
+                    $('#tabelPemilik').DataTable().ajax.reload();
+
+                    // Tutup modal dan reload konten kalau perlu
+                    $('#modal_frame').modal('hide');
+
+                    setTimeout(function() {
+                        $(".btn-pemilik").click(); // Memanggil tombol pemilik untuk buka modal data pemilik
+                    }, 500); // Tunggu sebentar sebelum buka modal lagi
+
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Terjadi kesalahan saat menambahkan Pemilik.', 'Error');
+                }
+            });
+        });
+
+        // batas
+
+        $('#editPemilik').on('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            // Serialize form data
+            var formData = new FormData(this); // 'this' refers to the form element
+
+            // AJAX request
+            $.ajax({
+                url: '<?= site_url("produk/update_pemilik/") . $pemilik->id_pemilik ?>', // Change to your form action URL
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+
+                success: function(response) {
+                    $('#tabelPemilik').DataTable().ajax.reload(); // Memperbarui DataTable
+                    $('#tabelProdukJogja').DataTable().ajax.reload(); // Memperbarui DataTable
+                    $('#tabelProdukBantul').DataTable().ajax.reload(); // Memperbarui DataTable
+
+                    // Jika berhasil
+                    toastr.success('Pemilik berhasil diubah!', 'Sukses');
+
+                    // Tutup modal dan reload konten kalau perlu
+                    $('#modal_frame').modal('hide');
+
+                    setTimeout(function() {
+                        $(".btn-pemilik").click(); // Memanggil tombol pemilik untuk buka modal data pemilik
+                    }, 500); // Tunggu sebentar sebelum buka modal lagi
+
+                },
+                error: function(xhr, status, error) {
+                    // Jika terjadi error
+                    toastr.error('Terjadi kesalahan saat mengubah Pemilik.', 'Error');
+                }
+            });
+        });
+
+        // batas
+
+        var table_pemilik = $("#tabelPemilik");
+
+        table_pemilik.DataTable({
+            ajax: "<?= base_url('produk/get_all_pemilik'); ?>",
+            paging: true,
+            info: true,
+            lengthChange: true,
+            searching: true,
+            ordering: false,
+        });
+
+        table_pemilik.on('draw.dt', function() {
+            table_pemilik.columns.adjust().draw();
+        });
+
+        $(document).on("click", ".btn-delete-pemilik", function() {
+            var id_pemilik = $(this).data("id");
+            var url = "<?= base_url('produk/delete_pemilik'); ?>";
+
+            // Tutup dulu modal_frame
+            $('#modal_frame').modal('hide');
+
+            // Tunggu sampai modal bener-bener tertutup baru munculin konfirmasi
+            $('#modal_frame').off('hidden.bs.modal').on('hidden.bs.modal', function() {
+                // Matikan event ini setelah jalan sekali biar nggak dobel
+                $(this).off('hidden.bs.modal');
+
+                bootbox.confirm({
+                    title: "Konfirmasi Hapus Pemilik",
+                    message: "Apakah Anda yakin ingin menghapus Pemilik ini?",
+                    buttons: {
+                        confirm: {
+                            label: "Hapus",
+                            className: "btn-danger"
+                        },
+                        cancel: {
+                            label: "Batal",
+                            className: "btn-secondary"
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            $.post(url, {
+                                id_pemilik: id_pemilik
+                            }, function(res) {
+                                if (res.status == "sukses") {
+                                    toastr.success(res.pesan);
+                                    table_pemilik.DataTable().ajax.reload();
+                                    $(".btn-pemilik").click();
+                                } else {
+                                    toastr.warning(res.pesan);
+                                }
+                            });
+                        } else {
+                            $('#modal_frame').modal('show');
+                            $('#modal_frame .modal-title').html("Data Pemilik");
+
+                            $.get("<?= site_url('produk/modal_pemilik'); ?>", function(res) {
+                                $('#modal_frame .modal-body').html(res);
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Konfigurasi tombol tambah produk
+        $(document).on("click", ".btn-pemilik-add", function() {
+            let frame = $("#modal_frame");
+
+            frame.find(".modal-title").html("Tambah Pemilik");
+
+            // Menampilkan modal
+            frame.modal("show");
+
+            // Mengambil data tabungan untuk diedit
+            $.get("<?= site_url('produk/modal_add_pemilik'); ?>", function(res) {
+                frame.find(".modal-body").html(res);
+            });
+        });
+
+        $(document).on("click", ".btn-pemilik-edit", function() {
+            let frame = $("#modal_frame");
+
+            // Mengambil id_tabungan dari atribut data-id tombol yang diklik
+            let id_pemilik = $(this).data("id");
+
+            frame.find(".modal-title").html("Edit Pemilik");
+
+            // Menampilkan modal
+            frame.modal("show");
+
+            // Mengambil data tabungan untuk diedit
+            $.get("<?= site_url('produk/modal_edit_pemilik'); ?>/" + id_pemilik, function(res) {
+                frame.find(".modal-body").html(res);
+            });
+        });
+
+        // batas
+
+        $(document).off('submit', '#tambahProduk').on('submit', '#tambahProduk', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            // Serialize form data
+            var formData = $(this).serialize();
+
+            // AJAX request
+            $.ajax({
+                url: '<?= site_url("produk/create") ?>', // Change to your form action URL
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Jika berhasil
+                    toastr.success('Produk berhasil ditambahkan!', 'Sukses');
+
+                    $('#modal_frame').modal('hide');
+                    $('#tabelProduk').DataTable().ajax.reload(); // Memperbarui DataTable
+
+                    setTimeout(function() {
+                        $(".btn-produk").click(); // trigger buka ulang modal bahan
+                    }, 500);
+                },
+                error: function(xhr, status, error) {
+                    // Jika terjadi error
+                    toastr.error('Terjadi kesalahan saat menambahkan Produk.', 'Error');
+                }
+            });
+        });
+
+        document.getElementById('harga_produk2').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
+
+        // batas
+
+        $('#editProduk').on('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            // Serialize form data
+            var formData = new FormData(this); // 'this' refers to the form element
+
+            // AJAX request
+            $.ajax({
+                url: '<?= site_url("produk/update/") . $produk->id_produk ?>', // Change to your form action URL
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+
+                success: function(response) {
+                    // Jika berhasil
+                    toastr.success('Produk berhasil diubah!', 'Sukses');
+
+                    $('#modal_frame').modal('hide');
+                    $('#tabelProduk').DataTable().ajax.reload(); // Memperbarui DataTable
+
+                    setTimeout(function() {
+                        $(".btn-produk").click(); // trigger buka ulang modal bahan
+                    }, 500);
+                },
+                error: function(xhr, status, error) {
+                    // Jika terjadi error
+                    toastr.error('Terjadi kesalahan saat mengubah produk.', 'Error');
+                }
+            });
+        });
+
+        document.getElementById('harga_produk4').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
+
+        // batas
+
+        var table_produk = $("#tabelProduk");
+
+        table_produk.DataTable({
+            ajax: "<?= base_url('produk/get_all_produk'); ?>",
+            paging: true,
+            info: true,
+            lengthChange: true,
+            searching: true,
+            ordering: false,
+        });
+
+        table_produk.on('draw.dt', function() {
+            table_produk.columns.adjust().draw();
+        });
+
+        $(document).on("click", ".btn-delete-produk", function() {
+            var id_produk = $(this).data("id");
+            var url = "<?= base_url('produk/delete'); ?>";
+
+            // Tutup dulu modal_frame
+            $('#modal_frame').modal('hide');
+
+            // Tunggu sampai modal bener-bener tertutup baru munculin konfirmasi
+            $('#modal_frame').off('hidden.bs.modal').on('hidden.bs.modal', function() {
+                // Matikan event ini setelah jalan sekali biar nggak dobel
+                $(this).off('hidden.bs.modal');
+
+                bootbox.confirm({
+                    title: "Konfirmasi Hapus produk",
+                    message: "Apakah Anda yakin ingin menghapus produk ini?",
+                    buttons: {
+                        confirm: {
+                            label: "Hapus",
+                            className: "btn-danger"
+                        },
+                        cancel: {
+                            label: "Batal",
+                            className: "btn-secondary"
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            $.post(url, {
+                                id_produk: id_produk
+                            }, function(res) {
+                                if (res.status == "sukses") {
+                                    toastr.success(res.pesan);
+                                    table_produk.DataTable().ajax.reload();
+                                    $(".btn-produk").click();
+                                } else {
+                                    toastr.warning(res.pesan);
+                                }
+                            });
+                        } else {
+                            $('#modal_frame').modal('show');
+                            $('#modal_frame .modal-title').html("Data produk");
+
+                            $.get("<?= site_url('produk/modal_produk'); ?>", function(res) {
+                                $('#modal_frame .modal-body').html(res);
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Konfigurasi tombol tambah produk
+        $(document).on("click", ".btn-produk-add", function() {
+            let frame = $("#modal_frame");
+
+            frame.find(".modal-title").html("Tambah Produk");
+
+            frame.one('hidden.bs.modal', function() {
+                frame.modal("show");
+                $.get("<?= site_url('produk/modal_add_produk'); ?>", function(res) {
+                    frame.find(".modal-body").html(res);
+                });
+            });
+            frame.modal("hide");
+        });
+
+        $(document).on("click", ".btn-produk-edit", function() {
+            let frame = $("#modal_frame");
+
+            // Mengambil id_tabungan dari atribut data-id tombol yang diklik
+            let id_produk = $(this).data("id");
+
+            frame.find(".modal-title").html("Edit Produk");
+
+            // Menampilkan modal
+            frame.one('hidden.bs.modal', function() {
+                frame.modal("show");
+                $.get("<?= site_url('produk/modal_edit_produk'); ?>/" + id_produk, function(res) {
+                    frame.find(".modal-body").html(res);
+                });
+            });
+            frame.modal("hide");
+
+        });
+
+        // batas
+
+        $(document).off('submit', '#tambahProdukOutlet').on('submit', '#tambahProduk', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            // Serialize form data
+            var formData = $(this).serialize();
+
+            // AJAX request
+            $.ajax({
+                url: '<?= site_url("produk/modal_add_produkoutletsave") ?>', // Change to your form action URL
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Jika berhasil
+                    toastr.success('Produk berhasil ditambahkan!', 'Sukses');
+
+                    $('#modal_frame').modal('hide');
+                    // Cari tab yang sedang aktif
+                    var activeTab = $('.tab-pane.active');
+                    var activeTable = activeTab.find('.tabelProduk'); // Temukan tabel di tab aktif
+                    var tableId = activeTable.attr('id');
+
+                    // Reload tabel jika ditemukan
+                    if (tableId && tableProdukInstances[tableId]) {
+                        tableProdukInstances[tableId].ajax.reload();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Jika terjadi error
+                    toastr.error('Terjadi kesalahan saat menambahkan Produk.', 'Error');
+                }
+            });
+        });
+
+        document.getElementById('harga_produk2').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
+
     });
 </script>
 </body>

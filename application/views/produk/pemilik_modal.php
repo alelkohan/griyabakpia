@@ -28,7 +28,7 @@
 	</div><!--end card-body-->
 </div><!--end card-->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	$(document).ready(function() {
 		var table_pemilik = $("#tabelPemilik");
@@ -129,4 +129,4 @@
 
 	});
 
-</script>
+</script> -->

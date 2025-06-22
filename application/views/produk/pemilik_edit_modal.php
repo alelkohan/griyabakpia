@@ -1,4 +1,5 @@
 <form class="" id="editPemilik">
+    <input type="hidden" name="id_pemilik" class="form-control" id="id_pemilik" value="<?= $pemilik->id_pemilik ?>" required="">
     <div class="row">
         <div class="col-md-12">
             <div class="mb-3">
@@ -25,7 +26,7 @@
     </div>
 </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
     $(document).ready(function() {
         // Submit form via AJAX
@@ -69,4 +70,4 @@
     });
 
 
-</script>
+</script> -->

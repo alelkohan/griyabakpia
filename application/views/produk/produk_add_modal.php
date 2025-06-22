@@ -28,12 +28,13 @@
     </div>
     <div class="row">
         <div class="col-sm-12 text-end">
+            <button type="button" class="btn btn-secondary px-4 btn-tutup" data-target=".btn-produk">Kembali</button>
             <button type="submit" class="btn btn-primary px-4 btn-submit-produk">Buat Produk</button>
         </div>
     </div>
 </form>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         // Submit form via AJAX
         $(document).off('submit', '#tambahProduk').on('submit', '#tambahProduk', function(e) {
@@ -50,9 +51,13 @@
                 success: function(response) {
                     // Jika berhasil
                     toastr.success('Produk berhasil ditambahkan!', 'Sukses');
-                    
+
                     $('#modal_frame').modal('hide');
                     $('#tabelProduk').DataTable().ajax.reload(); // Memperbarui DataTable
+
+                    setTimeout(function() {
+                        $(".btn-produk").click(); // trigger buka ulang modal bahan
+                    }, 500);
                 },
                 error: function(xhr, status, error) {
                     // Jika terjadi error
@@ -60,19 +65,17 @@
                 }
             });
         });
+
+        document.getElementById('harga_produk2').addEventListener('input', function(e) {
+            var value = e.target.value;
+
+            value = value.replace(/[^0-9]/g, '');
+
+            if (value) {
+                value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            e.target.value = value;
+        });
     });
-
-    document.getElementById('harga_produk2').addEventListener('input', function(e) {
-        var value = e.target.value;
-
-        value = value.replace(/[^0-9]/g, '');
-
-        if (value) {
-            value = 'Rp ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
-
-        e.target.value = value;
-    });
-
-</script>
-
+</script> -->

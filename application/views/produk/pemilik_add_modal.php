@@ -27,7 +27,7 @@
     </div>
 </form>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         // Submit form via AJAX
         $(document).off('submit', '#tambahPemilik').on('submit', '#tambahPemilik', function(e) {
@@ -71,5 +71,4 @@
 
     });
 
-</script>
-
+</script> -->

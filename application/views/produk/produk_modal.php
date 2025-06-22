@@ -29,8 +29,7 @@
 	</div><!--end card-body-->
 </div><!--end card-->
 
-<script type="text/javascript">
-
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		var table_produk = $("#tabelProduk");
 
@@ -43,19 +42,19 @@
 			ordering: false,
 		});
 
-		table_produk.on('draw.dt', function () {
+		table_produk.on('draw.dt', function() {
 			table_produk.columns.adjust().draw();
 		});
 
 		$(document).on("click", ".btn-delete-produk", function() {
-			var id_produk = $(this).data("id");            
+			var id_produk = $(this).data("id");
 			var url = "<?= base_url('produk/delete'); ?>";
 
 			// Tutup dulu modal_frame
 			$('#modal_frame').modal('hide');
 
 			// Tunggu sampai modal bener-bener tertutup baru munculin konfirmasi
-			$('#modal_frame').off('hidden.bs.modal').on('hidden.bs.modal', function () {
+			$('#modal_frame').off('hidden.bs.modal').on('hidden.bs.modal', function() {
 				// Matikan event ini setelah jalan sekali biar nggak dobel
 				$(this).off('hidden.bs.modal');
 
@@ -73,9 +72,11 @@
 						}
 					},
 					callback: function(result) {
-						if(result) {
-							$.post(url, {id_produk: id_produk}, function(res) {
-								if(res.status == "sukses") {
+						if (result) {
+							$.post(url, {
+								id_produk: id_produk
+							}, function(res) {
+								if (res.status == "sukses") {
 									toastr.success(res.pesan);
 									table_produk.DataTable().ajax.reload();
 									$(".btn-produk").click();
@@ -83,7 +84,7 @@
 									toastr.warning(res.pesan);
 								}
 							});
-						}	else {
+						} else {
 							$('#modal_frame').modal('show');
 							$('#modal_frame .modal-title').html("Data produk");
 
@@ -102,32 +103,43 @@
 
 			frame.find(".modal-title").html("Tambah Produk");
 
-    		// Menampilkan modal
-			frame.modal("show");
-
-    		// Mengambil data tabungan untuk diedit
-			$.get("<?= site_url('produk/modal_add_produk'); ?>", function(res) {
-				frame.find(".modal-body").html(res);
+			frame.one('hidden.bs.modal', function() {
+				frame.modal("show");
+				$.get("<?= site_url('produk/modal_add_produk'); ?>", function(res) {
+					frame.find(".modal-body").html(res);
+				});
 			});
+			frame.modal("hide");
 		});
 
 		$(document).on("click", ".btn-produk-edit", function() {
 			let frame = $("#modal_frame");
 
-    		// Mengambil id_tabungan dari atribut data-id tombol yang diklik
+			// Mengambil id_tabungan dari atribut data-id tombol yang diklik
 			let id_produk = $(this).data("id");
 
 			frame.find(".modal-title").html("Edit Produk");
 
-    		// Menampilkan modal
-			frame.modal("show");
-
-    		// Mengambil data tabungan untuk diedit
-			$.get("<?= site_url('produk/modal_edit_produk'); ?>/" + id_produk, function(res) {
-				frame.find(".modal-body").html(res);
+			// Menampilkan modal
+			frame.one('hidden.bs.modal', function() {
+				frame.modal("show");
+				$.get("<?= site_url('produk/modal_edit_produk'); ?>/" + id_produk, function(res) {
+					frame.find(".modal-body").html(res);
+				});
 			});
+			frame.modal("hide");
+
+		});
+
+		$(document).on('click', '.btn-tutup', function() {
+			let target = $(this).data('target');
+			$('#modal_frame').modal('hide');
+			if (target) {
+				$('#modal_frame').one('hidden.bs.modal', function() {
+					$(target).click();
+				});
+			}
 		});
 
 	});
-
-</script>
+</script> -->

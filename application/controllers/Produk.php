@@ -18,7 +18,6 @@ class Produk extends CI_Controller
                 echo "Anda tidak punya akses ke halaman ini.";
                 die();
             }
-
         } else {
             redirect('auth');
         }
@@ -52,10 +51,10 @@ class Produk extends CI_Controller
     private function set_output($data)
     {
         $this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($data, JSON_PRETTY_PRINT))
-        ->_display();
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($data, JSON_PRETTY_PRINT))
+            ->_display();
         exit;
     }
 
@@ -77,8 +76,8 @@ class Produk extends CI_Controller
                 <i class="las la-ellipsis-v fs-20 text-muted"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel' . $key->id_pemilik . '">
-                <button class="dropdown-item btn-pemilik-edit" data-id="' . $key->id_pemilik .'">Edit</button>
-                <button class="dropdown-item btn-delete-pemilik" data-id="' . $key->id_pemilik .'">Hapus</button>
+                <button class="dropdown-item btn-pemilik-edit" data-id="' . $key->id_pemilik . '">Edit</button>
+                <button class="dropdown-item btn-delete-pemilik" data-id="' . $key->id_pemilik . '">Hapus</button>
                 </div>
                 </div>',
             );
@@ -120,8 +119,8 @@ class Produk extends CI_Controller
                 <i class="las la-ellipsis-v fs-20 text-muted"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel' . $key->id_pembayaran_toko . '">
-                <button class="dropdown-item btn-pembayarantoko-detail" data-id="' . $key->id_pembayaran_toko .'">Detail</button>
-                <button class="dropdown-item btn-pembayarantoko-edit" data-id="' . $key->id_pembayaran_toko .'">Edit</button>
+                <button class="dropdown-item btn-pembayarantoko-detail" data-id="' . $key->id_pembayaran_toko . '">Detail</button>
+                <button class="dropdown-item btn-pembayarantoko-edit" data-id="' . $key->id_pembayaran_toko . '">Edit</button>
                 </div>
                 </div>',
             );
@@ -143,13 +142,13 @@ class Produk extends CI_Controller
 
         foreach ($daftar_toko as $key) {
             $status_badge = $key->status == 'aktif'
-            ? '<span class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Aktif</span>'
-            : '<span class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Nonaktif</span>';
+                ? '<span class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Aktif</span>'
+                : '<span class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Nonaktif</span>';
 
             // Cek status toko dan atur tombol Hapus
             $btn_delete = $key->status == 'aktif'
-            ? '<button class="dropdown-item text-muted" disabled>Hapus</button>'
-            : '<button class="dropdown-item btn-delete-toko" data-id="' . $key->id_toko . '">Hapus</button>';
+                ? '<button class="dropdown-item text-muted" disabled>Hapus</button>'
+                : '<button class="dropdown-item btn-delete-toko" data-id="' . $key->id_toko . '">Hapus</button>';
 
             $dropdown = '
             <div class="dropdown d-inline-block">
@@ -195,8 +194,8 @@ class Produk extends CI_Controller
                 <i class="las la-ellipsis-v fs-20 text-muted"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel' . $key->id_outlet . '">
-                <button class="dropdown-item btn-outlet-edit" data-id="' . $key->id_outlet .'">Edit</button>
-                <button class="dropdown-item btn-delete-outlet" data-id="' . $key->id_outlet .'">Hapus</button>
+                <button class="dropdown-item btn-outlet-edit" data-id="' . $key->id_outlet . '">Edit</button>
+                <button class="dropdown-item btn-delete-outlet" data-id="' . $key->id_outlet . '">Hapus</button>
                 </div>
                 </div>',
             );
@@ -229,8 +228,8 @@ class Produk extends CI_Controller
                 <i class="las la-ellipsis-v fs-20 text-muted"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel' . $key->id_produk . '">
-                <button class="dropdown-item btn-produk-edit" data-id="' . $key->id_produk .'">Edit</button>
-                <button class="dropdown-item btn-delete-produk" data-id="' . $key->id_produk .'">Hapus</button>
+                <button class="dropdown-item btn-produk-edit" data-id="' . $key->id_produk . '">Edit</button>
+                <button class="dropdown-item btn-delete-produk" data-id="' . $key->id_produk . '">Hapus</button>
                 </div>
                 </div>',
             );
@@ -243,7 +242,7 @@ class Produk extends CI_Controller
         );
         $this->set_output($response);
     }
-    
+
 
     public function get_all_produk_by_outlet()
     {
@@ -255,8 +254,8 @@ class Produk extends CI_Controller
 
         foreach ($daftar_produk as $key) {
             $stok = ($key->stok == 0)
-            ? '<span class="badge rounded text-danger bg-danger-subtle">0</span>'
-            : '<span class="badge rounded text-success bg-success-subtle">' . $key->stok . '</span>';
+                ? '<span class="badge rounded text-danger bg-danger-subtle">0</span>'
+                : '<span class="badge rounded text-success bg-success-subtle">' . $key->stok . '</span>';
 
             $bahan_input = array(
                 $no++,
@@ -361,14 +360,14 @@ class Produk extends CI_Controller
 
         foreach ($daftar_log_setor_toko as $key) {
             // Format status bayar dengan badge
-            $status_bayar = ($key->status_bayar == 'lunas') 
-            ? '<span class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Lunas</span>'
-            : '<span class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Belum</span>';
+            $status_bayar = ($key->status_bayar == 'lunas')
+                ? '<span class="badge bg-success-subtle text-success fs-11 fw-medium px-2">Lunas</span>'
+                : '<span class="badge bg-danger-subtle text-danger fs-11 fw-medium px-2">Belum</span>';
 
             // Tambahkan atribut disabled jika status lunas
-            $btn_bayar = ($key->status_bayar == 'lunas') 
-            ? '<button class="dropdown-item btn-bayar-logsetor" data-id="' . $key->id_log_setor_toko . '" disabled>Bayar</button>'
-            : '<button class="dropdown-item btn-bayar-logsetor" data-id="' . $key->id_log_setor_toko . '">Bayar</button>';
+            $btn_bayar = ($key->status_bayar == 'lunas')
+                ? '<button class="dropdown-item btn-bayar-logsetor" data-id="' . $key->id_log_setor_toko . '" disabled>Bayar</button>'
+                : '<button class="dropdown-item btn-bayar-logsetor" data-id="' . $key->id_log_setor_toko . '">Bayar</button>';
 
             $bahan_input = array(
                 $no++,
@@ -379,9 +378,9 @@ class Produk extends CI_Controller
                 <i class="las la-ellipsis-v fs-20 text-muted"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                <button class="dropdown-item btn-detail-logsetor" data-id="' . $key->id_log_setor_toko .'">Detail</button>'
-                . $btn_bayar .
-                '<button class="dropdown-item btn-delete-logsetor" data-id="' . $key->id_log_setor_toko .'" data-target=".btn-toko-bayar[data-id_toko=\'' . $id_toko . '\']">Hapus</button>
+                <button class="dropdown-item btn-detail-logsetor" data-id="' . $key->id_log_setor_toko . '">Detail</button>'
+                    . $btn_bayar .
+                    '<button class="dropdown-item btn-delete-logsetor" data-id="' . $key->id_log_setor_toko . '" data-target=".btn-toko-bayar[data-id_toko=\'' . $id_toko . '\']">Hapus</button>
                 </div>
                 </div>',
             );
@@ -408,19 +407,20 @@ class Produk extends CI_Controller
         echo json_encode(['status' => 'success']);
     }
 
-    public function update($id_produk)
+    public function update()
     {
         $harga = $this->input->post('harga_produk');
         $harga = preg_replace("/[^0-9]/", "", $harga);
+        $id_produk = $this->input->post('id_produk');
 
         $data = [
+            'id_produk' => $id_produk,
             'id_pemilik' => $this->input->post('pemilik'),
             'nama_produk' => $this->input->post('nama_produk'),
             'harga_default' => $harga
         ];
 
-        if ($this->Produk_model->update($id_produk, $data))
-        {
+        if ($this->Produk_model->update($id_produk, $data)) {
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error']);
@@ -442,8 +442,7 @@ class Produk extends CI_Controller
         };
 
         $check_digunakanoutlet = $this->Produk_model->get_produk_by_idoutlet($id_produk);
-        if($check_digunakanoutlet)
-        {
+        if ($check_digunakanoutlet) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Data produk ini masih digunakan, tidak bisa dihapus',
@@ -452,8 +451,7 @@ class Produk extends CI_Controller
         }
 
         $check_digunakantoko = $this->Produk_model->get_produk_by_idtoko($id_produk);
-        if($check_digunakantoko)
-        {
+        if ($check_digunakantoko) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Data produk ini masih digunakan, tidak bisa dihapus',
@@ -511,15 +509,17 @@ class Produk extends CI_Controller
         echo json_encode(['status' => 'success']);
     }
 
-    public function update_pemilik($id_pemilik)
+    public function update_pemilik()
     {
+        $id_pemilik = $this->input->post('id_pemilik');
+
         $data = [
+            'id_pemilik' => $id_pemilik,
             'nama_pemilik' => $this->input->post('nama_pemilik'),
             'jenis_pemilik' => $this->input->post('jenis_pemilik'),
         ];
 
-        if ($this->Produk_model->update_pemilik($id_pemilik, $data))
-        {
+        if ($this->Produk_model->update_pemilik($id_pemilik, $data)) {
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error']);
@@ -535,8 +535,7 @@ class Produk extends CI_Controller
             'status' => $this->input->post('status_toko'),
         ];
 
-        if ($this->Produk_model->update_toko($id_toko, $data))
-        {
+        if ($this->Produk_model->update_toko($id_toko, $data)) {
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error']);
@@ -546,12 +545,12 @@ class Produk extends CI_Controller
     public function update_outlet()
     {
         $id_outlet = $this->input->post('id_outlet');
+
         $data = [
             'nama_outlet' => $this->input->post('nama_outlet'),
         ];
 
-        if ($this->Produk_model->update_outlet($id_outlet, $data))
-        {
+        if ($this->Produk_model->update_outlet($id_outlet, $data)) {
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error']);
@@ -563,8 +562,7 @@ class Produk extends CI_Controller
         $id_pemilik = $this->input->post('id_pemilik');
 
         $check_pemilik = $this->Produk_model->get_pemilik_by_id($id_pemilik);
-        if(!$check_pemilik)
-        {
+        if (!$check_pemilik) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Tidak ditemukan',
@@ -573,8 +571,7 @@ class Produk extends CI_Controller
         }
 
         $check_digunakanproduk = $this->Produk_model->get_pemilik_by_produk($id_pemilik);
-        if($check_digunakanproduk)
-        {
+        if ($check_digunakanproduk) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Data pemilik ini masih digunakan, tidak bisa dihapus',
@@ -596,8 +593,7 @@ class Produk extends CI_Controller
         $id_toko = $this->input->post('id_toko');
 
         $check_toko = $this->Produk_model->get_toko_by_id($id_toko);
-        if(!$check_toko)
-        {
+        if (!$check_toko) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Tidak ditemukan',
@@ -619,8 +615,7 @@ class Produk extends CI_Controller
         $id_outlet = $this->input->post('id_outlet');
 
         $check_outlet = $this->Produk_model->get_outlet_by_id($id_outlet);
-        if(!$check_outlet)
-        {
+        if (!$check_outlet) {
             $response = array(
                 'status'    => 'gagal',
                 'pesan'     => 'Tidak ditemukan',
@@ -689,10 +684,10 @@ class Produk extends CI_Controller
             return;
         }
 
-                // Tambah stok ke tabel produk
+        // Tambah stok ke tabel produk
         $this->Produk_model->add_stok($id_produk_outlet, $jumlah);
 
-                // Catat log stok
+        // Catat log stok
         $log_data = [
             'id_produk_outlet' => $id_produk_outlet,
             'tanggal' => $tanggal . ' ' . date('H:i:s'),
@@ -738,7 +733,7 @@ class Produk extends CI_Controller
     public function modal_add_produkoutlet()
     {
         $id_outlet = $this->input->get('id_outlet');
-        
+
         $data['produk'] = $this->Produk_model->get_produk_yang_belum_terdaftar($id_outlet);
         $this->load->view('produk/produkoutlet_add_modal', $data);
     }
@@ -1030,7 +1025,7 @@ class Produk extends CI_Controller
         echo json_encode(['status' => 'success']);
     }
 
-    public function modal_edit($id_produk)
+    public function modal_edit_produk($id_produk)
     {
         if ($id_produk == "") {
             redirect('produk');
@@ -1082,7 +1077,7 @@ class Produk extends CI_Controller
     }
 
     public function modal_edit_pemilik($id_pemilik)
-    {        
+    {
         if ($id_pemilik == "") {
             redirect('produk');
         }
@@ -1093,7 +1088,7 @@ class Produk extends CI_Controller
     }
 
     public function modal_edit_toko($id_toko)
-    {        
+    {
         if ($id_toko == "") {
             redirect('produk/index_toko');
         }
@@ -1104,7 +1099,7 @@ class Produk extends CI_Controller
     }
 
     public function modal_edit_outlet($id_outlet)
-    {        
+    {
         if ($id_outlet == "") {
             redirect('produk');
         }
@@ -1124,6 +1119,4 @@ class Produk extends CI_Controller
 
         $this->load->view('produk/stok_add_modal', $data);
     }
-
-
 }
